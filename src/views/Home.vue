@@ -1,18 +1,25 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div>
+  <GALLERY :imgList="data"/>
+</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import GALLERY from "@/components/Gallery.vue"
+import * as API from "@/API"
 export default {
-  name: 'Home',
   components: {
-    HelloWorld
+    GALLERY
+  },
+  data() {return {
+    data: [],
+  }},
+  async created() {
+    this.data = await API.getData('photos/random?count=9&client_id=Z7a2U_EBEcad41Fk_Uv7BpN6QzK8pecRDaqGa2ZSrJQ')
   }
 }
 </script>
+
+<style>
+
+</style>
