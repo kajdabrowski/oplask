@@ -1,25 +1,33 @@
 <template>
-<div>
-  <GALLERY :imgList="data"/>
+<div class="flex-container">
+  <SEARCH />
+  <GALLERY class="gallery" :imgList="data"/>
 </div>
 </template>
 
 <script>
+import SEARCH from "@/components/Search.vue"
 import GALLERY from "@/components/Gallery.vue"
-import * as API from "@/API"
+// import * as API from "@/API"
 export default {
   components: {
-    GALLERY
+    GALLERY, SEARCH
   },
-  data() {return {
-    data: [],
-  }},
-  async created() {
-    this.data = await API.getData('photos/random?count=9&client_id=Z7a2U_EBEcad41Fk_Uv7BpN6QzK8pecRDaqGa2ZSrJQ')
+  computed: {
+    data() {
+      return this.$root.data
+    }
   }
 }
 </script>
 
 <style>
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 </style>
