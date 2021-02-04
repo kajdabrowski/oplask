@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     data() {
-      return this.$root.data
+      return this.$root.getAllImg() 
     }
   }
 }

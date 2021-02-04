@@ -13,7 +13,6 @@ export default {
     imgList: Array,
   },
   data() {return{
-      test: true,
       liked: []
   }},
   methods: {
@@ -23,7 +22,6 @@ export default {
           } else {
               this.liked.splice(this.liked.indexOf(item), 1)
           }
-          
         // console.log(localStorage.getItem('liked'))
          /* if (localStorage.getItem('liked') == "Tom") {
             localStorage.removeItem('liked')
@@ -44,9 +42,9 @@ export default {
         liked(value) {
             localStorage.setItem('liked', JSON.stringify(value))
         }
-    }, beforeCreate() {
+    }, created() {
         this.liked = JSON.parse(localStorage.getItem("liked"))
-        //console.log(this.liked)
+        console.log(this.liked)
         //console.log(JSON.parse(localStorage.getItem("liked")))
         // watch & before create ger rätt värde, men visar inte rött hjärta
     }
