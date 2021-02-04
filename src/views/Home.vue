@@ -1,17 +1,46 @@
 <template>
-<div class="flex-container">
-  <SEARCH />
+<div class="grid-container">
+  <SEARCH class="search" @change="searchQuery" @click="random" />
+  <a v-show="haveSearched" class="button left" @click="previousPage"> ← </a>
+  <p v-show="haveSearched" class="page">Page: {{ page }}</p>
   <GALLERY class="gallery" :imgList="data"/>
+  <a v-show="haveSearched" class="button right" @click="nextPage"> → </a>    
+  <router-link class="button router" to="/Liked">Go to liked images</router-link>
 </div>
 </template>
 
 <script>
 import SEARCH from "@/components/Search.vue"
 import GALLERY from "@/components/Gallery.vue"
-// import * as API from "@/API"
+
 export default {
   components: {
     GALLERY, SEARCH
+  },
+  data() { return {
+    search: '',
+    page: 1,
+    haveSearched: false
+  }}, 
+  methods: {
+    searchQuery(search) {
+      console.log(search)
+      this.search = search
+      this.haveSearched = true
+    },
+    random() {
+      this.haveSearched = false
+    },
+    previousPage() {
+      if (this.page > 1) {
+        this.page--
+        this.$root.search(this.search, this.page)
+      }
+    },
+    nextPage() {
+      this.page++
+      this.$root.search(this.search, this.page)
+    },
   },
   computed: {
     data() {
@@ -21,12 +50,40 @@ export default {
 }
 </script>
 
-<style>
-.flex-container {
-  display: flex;
-  justify-content: space-between;
+<style lang="scss">
+.grid-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 25vh 1fr auto 25vh;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  > .search {
+    grid-row: 1/2;
+    grid-column: 2/3;
+    justify-self: center;
+  }
+  > .left {
+    grid-row: 3/4;
+    grid-column: 1/2;
+  }
+  > .gallery {
+    grid-row: 3/4;
+    grid-column: 2/3;
+  }
+  > .right {
+    grid-row: 3/4;
+    grid-column: 3/4;
+  }
+  > .router {
+    grid-row: 4/5;
+    grid-column: 1/4;
+    justify-self: center;
+  }
+  > .page {
+    grid-row: 2/3;
+    grid-column: 1/4;
+  }
 }
 
 

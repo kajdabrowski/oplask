@@ -16,11 +16,17 @@ new Vue({
     getAllImg() {
       return this.data
     },
-    async search(query) {
-      let temp = await API.searchData(query)
+    getImgIndex(index) {
+      return this.data[index]
+    },
+    async search(query, page) {
+      let temp = await API.searchData(query, page)
       if (temp.results.length > 1) {
         this.data = temp.results
       }
+    },
+    async randomImages() {
+      this.data = await API.randomImages()
     }
   },
 

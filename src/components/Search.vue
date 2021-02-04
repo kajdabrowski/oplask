@@ -1,14 +1,15 @@
 <template>
   <div class="searchwrapper">
     <div>
-        <label>Search oplask </label>
+        <label>Search oplask</label>
         <input
             v-model="keyword"
             type="text"
             placeholder="Search..."
         />
     </div>
-    <button @click="checkQuery" type="submit" value="submit">Search</button>
+    <button class="button" @click="searchQuery" type="submit" value="submit">Search</button>
+    <button class="button" @click="randomImages" type="submit" value="submit">Random</button>
   </div>
 </template>
 
@@ -16,28 +17,30 @@
 export default {
   data() {
     return {
-      keyword: "",
-    };
+      keyword: ""
+    }
   },
-
   methods: {
-    checkQuery() {
+    searchQuery() {
       if (this.keyword.length > 2) {
-        this.$root.search(this.keyword);
+        this.$root.search(this.keyword, 1)
+        this.$emit('change', this.keyword)
       }
     },
+    randomImages() {
+      this.$emit('click')
+      this.$root.randomImages()
+    }
   },
-};
+}
 </script>
 
 <style lang="scss">
 .searchwrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 40%;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  width: 100%;
   gap: 0, 2rem;
   div {
       display: flex;
@@ -57,25 +60,6 @@ export default {
     border: 0.15rem solid black;
     background: #fff;
   }
-  }
-  button {
-    display: flex; 
-    justify-content: space-around;
-    width: fit-content;
-    text-decoration: none;
-    color: black;
-    padding: 1rem 4rem;
-    font-size: 2rem;
-    border-radius: 20px;
-    border: 0.2rem solid black;
-    background: #fff;
-    transition: 0.5s;
-    cursor: pointer;
-  }
-  button:hover {
-    color: white;
-    border: 0.2rem solid black;
-    background: black;
   }
 
 }

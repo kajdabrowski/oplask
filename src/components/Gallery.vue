@@ -1,72 +1,41 @@
 <template>
-  <div class="img-gallery">
-    <div class="container" v-for="(item) in imgList" :key="item.id">
-      <img @click="imgNav(item)" :src="item.urls.small" alt="" />
-      <button @click="like(item)" class="heart" :class="{ liked:liked.find(element => element.id === item.id)}"></button>
+    <div class="img-gallery" >
+      <div class="container" v-for="(item) in imgList" :key="item.id">
+        <img @click="imgNav(item)" :src="item.urls.small" :alt="item.alt_description" />
+        <button @click="like(item)" class="heart" :class="{ liked:liked.find(element => element.id === item.id)}"></button>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    imgList: Array,
-  },
-  data() {return{
-      liked: []
+  data() { 
+    return {
+      liked: [],
   }},
   methods: {
-      like(item) {
-          if (!this.liked.find(element => element.id === item.id)) {
-              this.liked.push(item)         
-          } else {
-            this.liked = this.liked.filter(e => e.id != item.id)
-              //this.liked.splice(this.liked.indexOf(item), 1)
-          }
-        // console.log(localStorage.getItem('liked'))
-         /* if (localStorage.getItem('liked') == "Tom") {
-            localStorage.removeItem('liked')
-            
-            this.test = !this.test
-
-          } else {
-            console.log(item)
-            localStorage.setItem('liked', 'Tom')
-            this.test = !this.test
-
-          }*/
-      },
+    like(item) {
+      !this.liked.find(element => element.id === item.id) ? this.liked.push(item) : this.liked = this.liked.filter(e => e.id != item.id)
+      localStorage.setItem('liked', JSON.stringify(this.liked))
+    },
     imgNav(item) {
       this.$router.push("SingleImg/" + item.id)
     }
-  }, watch: {
-        liked(value) {
-            localStorage.setItem('liked', JSON.stringify(value))
-        }
-    }, created() {
-        this.liked = JSON.parse(localStorage.getItem("liked"))
-        console.log(this.liked)
-        //console.log(JSON.parse(localStorage.getItem("liked")))
-        // watch & before create ger rätt värde, men visar inte rött hjärta
+  },
+  props: {
+    imgList: Array,
+  },
+  created() {
+    if (localStorage.getItem("liked")) {
+      this.liked = JSON.parse(localStorage.getItem("liked"))
     }
+  }
 }
 </script>
 
 <style lang="scss">
-.img-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 20rem);
-  grid-template-rows: repeat(3, 20rem);
-  gap: 0.2rem;
-  cursor: pointer;
-  div {
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-}
+
+
 .container {
   position: relative;
   button {
