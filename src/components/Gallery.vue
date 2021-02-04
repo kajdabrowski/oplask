@@ -1,6 +1,6 @@
 <template>
   <div class="img-gallery">
-    <div class="container" v-for="item in imgList" :key="item.id">
+    <div class="container" v-for="(item) in imgList" :key="item.id">
       <img @click="imgNav(item)" :src="item.urls.small" alt="" />
       <button @click="like(item)" class="heart" :class="{ liked:liked.find(element => element.id === item.id)}"></button>
     </div>
@@ -20,7 +20,8 @@ export default {
           if (!this.liked.find(element => element.id === item.id)) {
               this.liked.push(item)         
           } else {
-              this.liked.splice(this.liked.indexOf(item), 1)
+            this.liked = this.liked.filter(e => e.id != item.id)
+              //this.liked.splice(this.liked.indexOf(item), 1)
           }
         // console.log(localStorage.getItem('liked'))
          /* if (localStorage.getItem('liked') == "Tom") {
