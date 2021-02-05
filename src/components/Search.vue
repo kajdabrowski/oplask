@@ -8,8 +8,8 @@
             placeholder="Search..."
         />
     </div>
-    <button class="button" @click="searchQuery" type="submit" value="submit">Search</button>
-    <button class="button" @click="randomImages" type="submit" value="submit">Random</button>
+    <a href="#" class="button" @click="searchQuery" type="submit" value="submit">Search</a>
+    <a href="#" class="button" @click="randomImages" type="submit" value="submit">Random</a>
   </div>
 </template>
 
@@ -57,11 +57,51 @@ export default {
     padding: 0.75rem 2rem;
     font-size: 1rem;
     border-radius: 4px;
-    border: 0.15rem solid black;
+    border: 0.7rem solid black;
     background: #fff;
   }
   }
 
 }
 
+@media screen and (max-width: 992px) {
+.searchwrapper {
+  div {
+        label {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+  }
+    input {
+    width: fit-content;
+    text-decoration: none;
+    color: black;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    border: 0.15rem solid black;
+    background: #fff;
+  }
+  }
+}
+}
+@media screen and (max-width: 500px) {
+.searchwrapper {
+  div {
+        label {
+            margin-bottom: 0.5rem;
+            font-size: 1.0rem;
+  }
+    input {
+    width: fit-content;
+    text-decoration: none;
+    color: black;
+    padding: 0.20rem 0.3rem;
+    font-size: 0.6rem;
+    border-radius: 2px;
+    border: 0.10rem solid black;
+    background: #fff;
+  }
+  }
+}
+}
 </style>

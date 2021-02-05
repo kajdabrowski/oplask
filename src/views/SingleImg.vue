@@ -48,8 +48,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   flex-basis: 0;
-
   nav {
     margin-top: 2rem;
     margin-bottom: 2rem;

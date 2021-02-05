@@ -29,6 +29,9 @@ new Vue({
       this.data = await API.randomImages()
     }
   },
+  created() {
+    this.data = this.randomImages()
+  },
 
   router,
   render: h => h(App)
