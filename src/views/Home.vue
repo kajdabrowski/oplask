@@ -49,9 +49,10 @@ export default {
   },
   computed: {
     data() {
-      return this.$root.getAllImg();
+      return this.$store.getters.getAllImg
+      // return this.$root.getAllImg();
     },
-  },
+  }
 };
 </script>
 

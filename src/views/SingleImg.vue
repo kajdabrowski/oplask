@@ -14,26 +14,22 @@
 import WRITEMETADATA from "@/components/WriteMetaData.vue"
 
 export default {
-
   components: {
     WRITEMETADATA
   },
-
-  data() {
-    return {
-      img: this.$root.getSingleImg(this.$route.params.id),
-      counter: this.$root.getAllImg().indexOf(this.$root.getSingleImg(this.$route.params.id)),
-    }
-  },
+  data() { return {
+    counter: this.$store.getters.getAllImg().indexOf(this.$store.getSingleImg(this.$route.params.id)),
+    img: this.$store.getters.getSingleImg(this.$route.params.id)
+  }},
   methods: {
     next() {
       this.counter > 8 ? (this.counter = 0) : this.counter++
-      this.img = this.$root.getImgIndex(this.counter)
+      this.img = this.$store.getters.getImgIndex(this.counter)
     },
     previous() {
       console.log("<")
       this.counter < 1 ? (this.counter = 8) : this.counter--
-      this.img = this.$root.getImgIndex(this.counter)
+      this.img = this.$store.getters.getImgIndex(this.counter)
       
     },
   },
