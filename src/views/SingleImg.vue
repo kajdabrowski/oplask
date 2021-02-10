@@ -18,7 +18,7 @@ export default {
     WRITEMETADATA
   },
   data() { return {
-    counter: this.$store.getters.getAllImg().indexOf(this.$store.getSingleImg(this.$route.params.id)),
+    counter: this.$store.getters.getAllImg.indexOf(this.$store.getters.getSingleImg(this.$route.params.id)),
     img: this.$store.getters.getSingleImg(this.$route.params.id)
   }},
   methods: {
@@ -30,7 +30,6 @@ export default {
       console.log("<")
       this.counter < 1 ? (this.counter = 8) : this.counter--
       this.img = this.$store.getters.getImgIndex(this.counter)
-      
     },
   },
 }

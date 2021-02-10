@@ -39,12 +39,13 @@ export default {
     previousPage() {
       if (this.page > 1) {
         this.page--;
-        this.$root.search(this.search, this.page);
+        this.$store.dispatch('search', {'search': this.search, 'page': this.page})
+        //this.$root.search(this.search, this.page);
       }
     },
     nextPage() {
       this.page++;
-      this.$root.search(this.search, this.page);
+      this.$store.dispatch('search', {'search': this.search, 'page': this.page})
     },
   },
   computed: {
