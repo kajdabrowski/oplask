@@ -40,7 +40,6 @@ export default {
       if (this.page > 1) {
         this.page--;
         this.$store.dispatch('search', {'search': this.search, 'page': this.page})
-        //this.$root.search(this.search, this.page);
       }
     },
     nextPage() {
@@ -51,7 +50,6 @@ export default {
   computed: {
     data() {
       return this.$store.getters.getAllImg
-      // return this.$root.getAllImg();
     },
   }
 };

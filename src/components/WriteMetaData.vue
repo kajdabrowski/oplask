@@ -1,17 +1,18 @@
 <template>
   <div class="metainfo">
     <div>
-      Likes: <b>{{ imgData.likes }}</b>
+      Likes: <b>{{ showLikes }}</b>
     </div>
     <div>
-      Photographer: <b>{{ imgData.user.name }}</b>
+      Photographer: <b>{{ showPhotographer }}</b>
     </div>
     <div>
-      Views: <b>{{ imgData.views }}</b>
+      Views: <b>{{ showViews }}</b>
     </div>
     <div>
-      Downloads: <b>{{ imgData.downloads }}</b>
+      Downloads: <b>{{ showDownloads }}</b>
     </div>
+    <a href="#" :src="this.imgData.links.download" download="foto.jpeg">Download image</a>
   </div>
 </template>
 
@@ -20,7 +21,30 @@ export default {
   props: {
     imgData: Object,
   },
+
+  computed: {
+    showLikes() {
+     return this.imgData.likes ? this.imgData.likes : 0
+    }, 
+    showViews() {
+      return this.imgData.views ? this.imgData.views : 0
+    },
+    showDownloads() {
+      return this.imgData.downloads ? this.imgData.downloads : 0
+    },
+    showPhotographer() {
+      console.log(this.imgData.links.download)
+      return this.imgData.user.name ? this.imgData.user.name : 'Unknown'
+    }
+  },
+  methods: {
+    downloadImg() {
+      return this.imgData.links.download
+    }
+  }
 };
+
+
 </script>
 
 <style>

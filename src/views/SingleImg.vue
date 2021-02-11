@@ -31,7 +31,14 @@ export default {
       this.counter < 1 ? (this.counter = 8) : this.counter--
       this.img = this.$store.getters.getImgIndex(this.counter)
     },
-  },
+  }
+  /*,
+  created() {
+    if (this.$store.getters.getSingleImg(this.$route.params.id)) {
+      this.$router.push('/')
+    }
+  }
+  */
 }
 </script>
 

@@ -24,14 +24,12 @@ export default {
     searchQuery() {
       if (this.keyword.length > 2) {
         this.$store.dispatch('search', {'search': this.keyword, 'page': 1})
-        //this.$root.search(this.keyword, 1)
         this.$emit('change', this.keyword)
       }
     },
     randomImages() {
       this.$store.dispatch('random')
       this.$emit('click')
-      //this.$root.randomImages()
     }
   },
 }

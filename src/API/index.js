@@ -2,7 +2,7 @@
 // Secret key: HICCm8OzVb23S6dRGT9Q09is_8NvQWsDY8cnj-JRS58
 
 export let randomJSON = () => {
-  let data = require('@/API/random.json')
+  const data = require('@/API/random.json')
   return data
 }
 
